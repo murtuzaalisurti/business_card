@@ -5,12 +5,14 @@ export const CardWrap = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #23252C;
-    height: 100vh;
+    height: 100%;
+    width: 60%;
+    position: sticky;
+    top: 2rem;
 `;
 
 export const CardStyled = styled.div`
     background-color: #1A1B21;
-    /* height: 30rem; */
     width: 17rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
