@@ -23,18 +23,18 @@ function App() {
     }
   }
 
-  function download(){
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
-    iframe.contentWindow.document.open();
-    iframe.contentWindow.document.write(document.querySelector("#card"));
-    iframe.contentWindow.document.close();
-    iframe.contentWindow.print();
-    iframe.contentWindow.onafterprint = () => {
-      document.body.removeChild(iframe);
-    }
-  }
+  // function download(){
+  //   const iframe = document.createElement("iframe");
+  //   iframe.style.display = "none";
+  //   document.body.appendChild(iframe);
+  //   iframe.contentWindow.document.open();
+  //   iframe.contentWindow.document.write(document.querySelector("#card"));
+  //   iframe.contentWindow.document.close();
+  //   iframe.contentWindow.print();
+  //   iframe.contentWindow.onafterprint = () => {
+  //     document.body.removeChild(iframe);
+  //   }
+  // }
 
   return (
     <>
