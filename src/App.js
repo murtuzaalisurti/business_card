@@ -1,5 +1,5 @@
 import Card from "./components/Card";
-import {UserInputWrap, Input, Textarea, Label, Button} from './styled/UserInputSection'
+import {UserInputWrap, Input, Textarea, Label} from './styled/UserInputSection'
 import {useState} from 'react'
 
 function App() {
