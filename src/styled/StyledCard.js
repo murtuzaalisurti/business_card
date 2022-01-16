@@ -88,7 +88,7 @@ export const AboutWrapper = styled.div`
     padding: 0 2rem;
 
     .about, .interests{
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
     .title, .desc{
         font-family: 'Inter', sans-serif;

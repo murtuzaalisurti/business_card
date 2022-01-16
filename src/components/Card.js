@@ -1,6 +1,5 @@
-import React from 'react'
 import {CardWrap, CardStyled, MainContentWrapperStyled, IntroductionWrapperStyled} from '../styled/StyledCard'
-import { ImageWrapperStyled } from '../styled/ImageStyled'
+import { ImageWrapperStyled, ImageLayer } from '../styled/ImageStyled'
 import Image from './Image'
 import Introduction from './Introduction'
 import ContactCta from './ContactCta'
@@ -9,12 +8,21 @@ import Socials from './Socials'
 import location from '../assets/profile_final_2.png'
 
 const Card = (props) => {
+    var src = {
+        img_src: props.image_src
+    };
+    if(document.querySelector("#image") == null || document.querySelector("#image").files.length === 0) {
+        src.img_src = location
+    }
+
     return (
         <>
             <CardWrap>
-                <CardStyled>
+                <CardStyled className="card" id="card">
                     <ImageWrapperStyled>
-                        <Image src={location} />
+                        <ImageLayer>
+                            <Image src={src.img_src} />
+                        </ImageLayer>
                     </ImageWrapperStyled>
                     <MainContentWrapperStyled>
                         <IntroductionWrapperStyled>
@@ -40,7 +48,8 @@ Card.defaultProps = {
     interests: "Some of my interests include blogging, web development, reading and googling stuff a lot!",
     github: "http://github.com/murtuzaalisurti",
     twitter: "http://twitter.com/murtuza_surti",
-    instagram: "http://instagram.com/murtuzaali_surti"
+    instagram: "http://instagram.com/murtuzaali_surti",
+    image_src: location
 }
 
 export default Card
