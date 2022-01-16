@@ -1,12 +1,12 @@
 import React from 'react'
 import {IntroductionStyled} from '../styled/StyledCard'
 
-const Introduction = () => {
+const Introduction = (props) => {
     return (
         <IntroductionStyled>
-          <p className="name">Murtuzaali Surti</p>
-          <p className="occupation">Front-end Web Developer</p>
-          <p className="website">murtuzaalisurti.github.io</p>  
+          <p className="name">{props.name}</p>
+          <p className="occupation">{props.occupation}</p>
+          <p className="website">{props.website}</p>  
         </IntroductionStyled>
     )
 }
