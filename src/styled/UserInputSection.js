@@ -34,13 +34,28 @@ export const Label = styled.label`
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
 `;
 
-export const Textarea = styled(Input)``;
+export const Textarea = styled.textarea`
+    background-color: #1A1B21;
+    color: #ffffff;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 0.4rem;
+    padding: 0.7rem 1rem;
+`;
 
 export const Button = styled.button`
-    background-color: aliceblue;
+    background-color: #ffb681;
     color: #000000;
-    padding: 1rem 1rem;
+    padding: 0.7rem 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 0.4rem;
     margin-bottom: 2rem;
+    cursor: pointer;
 `;

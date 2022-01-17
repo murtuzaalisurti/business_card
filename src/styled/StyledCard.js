@@ -2,17 +2,19 @@ import styled from 'styled-components';
 
 export const CardWrap = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #23252C;
     height: 100%;
-    width: 60%;
+    width: 40%;
     position: sticky;
     top: 2rem;
 `;
 
 export const CardStyled = styled.div`
     background-color: #1A1B21;
+    background-color: ${props => props.color || "#1A1B21"};
     width: 17rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
@@ -31,6 +33,7 @@ export const IntroductionWrapperStyled = styled.div`
 `;
 
 export const IntroductionStyled = styled.div`
+    margin-bottom: 1.5rem;
     .name, .occupation, .website{
         margin: 0;
         text-align: center;
@@ -116,4 +119,10 @@ export const SocialsStyled = styled.div`
     a{
         color: #918E9B;
     }
+`;
+
+export const EmailStyled = styled(SocialsStyled)`
+    font-size: 0.6rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.8rem 0.5rem;
 `;

@@ -1,10 +1,9 @@
 import {CardWrap, CardStyled, MainContentWrapperStyled, IntroductionWrapperStyled} from '../styled/StyledCard'
 import { ImageWrapperStyled, ImageLayer } from '../styled/ImageStyled'
-// import Image from './Image'
+import {HeadingStyled} from '../styled/Headings'
 import Introduction from './Introduction'
-import ContactCta from './ContactCta'
 import About from './About'
-import Socials from './Socials'
+import Email from './Email'
 import location from '../assets/profile_final_2.png'
 
 const Card = (props) => {
@@ -17,17 +16,17 @@ const Card = (props) => {
 
     return (
         <>
-            <CardWrap>
-                <CardStyled className="card" id="card">
+            <CardWrap id="cardwrap">
+                <HeadingStyled>Preview</HeadingStyled>
+                <CardStyled className="card" id="card" color={props.color}>
                     <ImageWrapperStyled>
                         <ImageLayer image_src={src.img_src} />
                     </ImageWrapperStyled>
                     <MainContentWrapperStyled>
                         <IntroductionWrapperStyled>
                             <Introduction name={props.name} occupation={props.occupation} website={props.website} />
-                            <ContactCta email={props.email} linkedin={props.linkedin} />
-                            <About about={props.about} interests={props.interests} />
-                            <Socials twitter={props.twitter} instagram={props.instagram} github={props.github} />
+                            <About about={props.about} services={props.services} />
+                            <Email email={props.email} />
                         </IntroductionWrapperStyled>
                     </MainContentWrapperStyled>
                 </CardStyled>
@@ -42,12 +41,16 @@ Card.defaultProps = {
     occupation: "Front-end Web Developer",
     website: "murtuzaalisurti.github.io",
     linkedin: "https://www.linkedin.com/in/murtuzaali-surti/",
-    about: "Hey, myself Murtuza and I am a front-end web developer & a blogger. I am specialized in JavaScript and React.js",
-    interests: "Some of my interests include blogging, web development, reading and googling stuff a lot!",
+    about: "Hey, myself Murtuza and I am a Front-end Web Developer & a Blogger. I am specialized in JavaScript as well as Responsive Web Design. Content Creation suits me well.",
+    services: "I offer front-end web development, technical writing, blogging or full stack web development as a service.",
     github: "http://github.com/murtuzaalisurti",
     twitter: "http://twitter.com/murtuza_surti",
     instagram: "http://instagram.com/murtuzaali_surti",
     image_src: location
+}
+
+CardStyled.defaultProps = {
+    color: "#1A1B21"
 }
 
 export default Card

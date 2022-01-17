@@ -9,8 +9,8 @@ const About = (props) => {
                 <div className="desc">{props.about}</div>
             </div>
             <div className="interests">
-                <div className="title">Interests</div>
-                <div className="desc">{props.interests}</div>
+                <div className="title">Services</div>
+                <div className="desc">{props.services}</div>
             </div>
         </AboutWrapper>
     )
