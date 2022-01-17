@@ -13,6 +13,10 @@ export const ImageLayer = styled.div`
     border-radius: 50%;
     overflow: hidden;
     background-color: transparent;
+    background-image: url(${props => props.image_src});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
 `;

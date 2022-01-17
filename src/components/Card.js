@@ -1,6 +1,6 @@
 import {CardWrap, CardStyled, MainContentWrapperStyled, IntroductionWrapperStyled} from '../styled/StyledCard'
 import { ImageWrapperStyled, ImageLayer } from '../styled/ImageStyled'
-import Image from './Image'
+// import Image from './Image'
 import Introduction from './Introduction'
 import ContactCta from './ContactCta'
 import About from './About'
@@ -20,9 +20,7 @@ const Card = (props) => {
             <CardWrap>
                 <CardStyled className="card" id="card">
                     <ImageWrapperStyled>
-                        <ImageLayer>
-                            <Image src={src.img_src} />
-                        </ImageLayer>
+                        <ImageLayer image_src={src.img_src} />
                     </ImageWrapperStyled>
                     <MainContentWrapperStyled>
                         <IntroductionWrapperStyled>
