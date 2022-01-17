@@ -10,6 +10,7 @@ export const CardWrap = styled.div`
     width: 40%;
     position: sticky;
     top: 2rem;
+    margin-bottom: 2rem;
 `;
 
 export const CardStyled = styled.div`

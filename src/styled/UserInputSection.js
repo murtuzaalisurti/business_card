@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const UserInputWrap = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 2rem;
     width: 40%;
     padding: 0 0 2rem 1rem;
 
@@ -24,6 +24,7 @@ export const Input = styled.input`
     border: 1px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
+    width: 85%;
 `;
 
 export const Label = styled.label`
@@ -36,6 +37,7 @@ export const Label = styled.label`
     font-size: 0.85rem;
     font-family: 'Inter', sans-serif;
     cursor: pointer;
+    width: 85%;
 `;
 
 export const Textarea = styled.textarea`
@@ -45,13 +47,15 @@ export const Textarea = styled.textarea`
     border: 1px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
+    width: 85%;
 `;
 
 export const Button = styled.button`
     background-color: #ffb681;
     color: #000000;
-    padding: 0.7rem 0.5rem;
-    font-family: 'Inter', sans-serif;
+    padding: 0.7rem 2rem;
+    width: fit-content;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     outline: none;
     border: 1px solid transparent;
