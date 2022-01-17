@@ -18,7 +18,7 @@ const Card = (props) => {
         <>
             <CardWrap id="cardwrap">
                 <HeadingStyled>Preview</HeadingStyled>
-                <CardStyled className="card" id="card" color={props.color}>
+                <CardStyled className="card" id="card" P_col={props.P_col}>
                     <ImageWrapperStyled>
                         <ImageLayer image_src={src.img_src} />
                     </ImageWrapperStyled>
@@ -26,7 +26,7 @@ const Card = (props) => {
                         <IntroductionWrapperStyled>
                             <Introduction name={props.name} occupation={props.occupation} website={props.website} />
                             <About about={props.about} services={props.services} />
-                            <Email email={props.email} />
+                            <Email email={props.email} S_col={props.S_col} />
                         </IntroductionWrapperStyled>
                     </MainContentWrapperStyled>
                 </CardStyled>
@@ -46,11 +46,9 @@ Card.defaultProps = {
     github: "http://github.com/murtuzaalisurti",
     twitter: "http://twitter.com/murtuza_surti",
     instagram: "http://instagram.com/murtuzaali_surti",
+    P_col: "#1A1B21",
+    S_col: "#161619",
     image_src: location
-}
-
-CardStyled.defaultProps = {
-    color: "#1A1B21"
 }
 
 export default Card

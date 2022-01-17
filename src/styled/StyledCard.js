@@ -15,7 +15,7 @@ export const CardWrap = styled.div`
 
 export const CardStyled = styled.div`
     background-color: #1A1B21;
-    background-color: ${props => props.color || "#1A1B21"};
+    background-color: ${props => props.P_col || "#1A1B21"};
     width: 17rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
@@ -116,7 +116,6 @@ export const SocialsStyled = styled.div`
     padding: 0.6rem 0.5rem;
     font-size: 1.5rem;
     background-color: #161619;
-
     a{
         color: #918E9B;
     }
@@ -126,4 +125,5 @@ export const EmailStyled = styled(SocialsStyled)`
     font-size: 0.6rem;
     font-family: 'Poppins', sans-serif;
     padding: 0.8rem 0.5rem;
+    background-color: ${props => props.S_col || "#161619"};
 `;

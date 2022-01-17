@@ -13,7 +13,8 @@ function App() {
   const [about, setAbout] = useState();
   const [services, setServices] = useState();
   const [image, setImage] = useState();
-  const [color, setColor] = useState();
+  const [P_col, setPcol] = useState();
+  const [S_col, setScol] = useState();
 
   console.log(document.querySelector("#image"))
   if(document.querySelector("#image") !== null){
@@ -55,10 +56,12 @@ function App() {
         <Input type="email" onChange={(e) => {setEmail(e.target.value)}} value={email} id="email" placeholder="Email" required autoComplete="off" />
         <Textarea type="text" onChange={(e) => {setAbout(e.target.value)}} value={about} id="about" placeholder="A little bit about you.." rows="5" required autoComplete="off" />
         <Textarea type="text" onChange={(e) => {setServices(e.target.value)}} value={services} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
+        <p>Themes</p>
+        <Input type="color" onChange={(e) => {setPcol(e.target.value)}} value={P_col} />
+        <Input type="color" onChange={(e) => {setScol(e.target.value)}} value={S_col} />
         <Button onClick={() => {download()}}>Download</Button>
-        <Input type="color" onChange={(e) => {setColor(e.target.value)}} value={color} id="color" placeholder="choose color" style={{display: 'none'}} />
       </UserInputWrap>
-      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram color={color} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
+      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram P_col={P_col} S_col={S_col} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
     </>
   );
 }
