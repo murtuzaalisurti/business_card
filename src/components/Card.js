@@ -18,15 +18,15 @@ const Card = (props) => {
         <>
             <CardWrap id="cardwrap">
                 <HeadingStyled>Preview</HeadingStyled>
-                <CardStyled className="card" id="card" color={props.color}>
+                <CardStyled className="card" id="card" theme={props.theme}>
                     <ImageWrapperStyled>
                         <ImageLayer image_src={src.img_src} />
                     </ImageWrapperStyled>
                     <MainContentWrapperStyled>
                         <IntroductionWrapperStyled>
-                            <Introduction name={props.name} occupation={props.occupation} website={props.website} />
-                            <About about={props.about} services={props.services} />
-                            <Email email={props.email} />
+                            <Introduction name={props.name} occupation={props.occupation} website={props.website} theme={props.theme} />
+                            <About about={props.about} services={props.services} theme={props.theme} />
+                            <Email email={props.email} theme={props.theme} />
                         </IntroductionWrapperStyled>
                     </MainContentWrapperStyled>
                 </CardStyled>
@@ -47,10 +47,6 @@ Card.defaultProps = {
     twitter: "http://twitter.com/murtuza_surti",
     instagram: "http://instagram.com/murtuzaali_surti",
     image_src: location
-}
-
-CardStyled.defaultProps = {
-    color: "#1A1B21"
 }
 
 export default Card
