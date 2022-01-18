@@ -3,7 +3,7 @@ import {AboutWrapper} from '../styled/StyledCard'
 
 const About = (props) => {
     return (
-        <AboutWrapper>
+        <AboutWrapper theme={props.theme}>
             <div className="about">
                 <div className="title">About</div>
                 <div className="desc">{props.about}</div>

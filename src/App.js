@@ -1,5 +1,5 @@
 import Card from "./components/Card";
-import {UserInputWrap, Input, Textarea, Label, Button} from './styled/UserInputSection'
+import {UserInputWrap, Input, Textarea, Label, Button, ThemesWrap, SelectTheme} from './styled/UserInputSection'
 import {HeadingStyled} from './styled/Headings'
 import {useState} from 'react'
 import * as htmlToImage from 'html-to-image'
@@ -14,7 +14,7 @@ function App() {
   const [about, setAbout] = useState();
   const [services, setServices] = useState();
   const [image, setImage] = useState();
-  const [color, setColor] = useState();
+  const [theme, setTheme] = useState("dark");
 
   if(document.querySelector("#image") !== null){
     if(document.querySelector("#image").files.length === 1){
@@ -30,6 +30,20 @@ function App() {
     })
   }
 
+  function theme_change(e){
+    e.target.style.backgroundColor === "black" ? setTheme("dark") : setTheme("light");
+    e.target.style.borderColor = '#ffb681';
+
+    if(e.target.nextSibling == null){
+      console.log(e.target)
+      e.target.previousSibling.style.borderColor = 'transparent';
+    } 
+    if (e.target.nextSibling !== null){
+      console.log(e.target)
+      e.target.nextSibling.style.borderColor = 'transparent';
+    }
+  }
+
   return (
     <>
       <UserInputWrap>
@@ -42,10 +56,14 @@ function App() {
         <Input type="email" onChange={(e) => {setEmail(e.target.value)}} value={email} id="email" placeholder="Email" required autoComplete="off" />
         <Textarea type="text" onChange={(e) => {setAbout(e.target.value)}} value={about} id="about" placeholder="A little bit about you.." rows="5" required autoComplete="off" />
         <Textarea type="text" onChange={(e) => {setServices(e.target.value)}} value={services} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
+        <ThemesWrap>
+          <p>Theme </p>
+          <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'black'}} />
+          <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'white'}} />
+        </ThemesWrap>
         <Button onClick={() => {download_image()}}>Download</Button>
-        <Input type="color" onChange={(e) => {setColor(e.target.value)}} value={color} id="color" placeholder="choose color" style={{display: 'none'}} />
       </UserInputWrap>
-      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram color={color} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
+      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
     </>
   );
 }

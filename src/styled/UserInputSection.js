@@ -7,13 +7,11 @@ export const UserInputWrap = styled.div`
     width: 40%;
     padding: 0 0 2rem 1rem;
 
-    p{
-        font-family: 'Inter', sans-serif;
-        color: #ffffff;
-        margin-top: 1rem;
-    }
     #image{
         display: none;
+    }
+    input, textarea, button, label {
+        font-family: 'Poppins', sans-serif;
     }
 `;
 
@@ -29,13 +27,12 @@ export const Input = styled.input`
 
 export const Label = styled.label`
     background-color: #1A1B21;
-    color: #ffffff;
+    color: #6e6e6e;
     outline: none;
     border: 1px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
     cursor: pointer;
     width: 85%;
 `;
@@ -55,11 +52,36 @@ export const Button = styled.button`
     color: #000000;
     padding: 0.7rem 2rem;
     width: fit-content;
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     outline: none;
     border: 1px solid transparent;
     border-radius: 0.4rem;
     margin-bottom: 2rem;
+    cursor: pointer;
+`;
+
+export const ThemesWrap = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: fit-content;
+    gap: 1rem;
+    font-size: 0.85rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1A1B21;
+    padding: 0.7rem 1rem;
+    border-radius: 0.4rem;
+    
+    p{
+        color: #6e6e6e;
+        margin: 0;
+    }
+`;
+
+export const SelectTheme = styled.div`
+    height: 2rem;
+    width: 2rem;
+    border: 0.2rem solid transparent;
+    border-radius: 50%;
     cursor: pointer;
 `;

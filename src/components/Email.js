@@ -3,7 +3,7 @@ import {EmailStyled} from '../styled/StyledCard'
 
 const Email = (props) => {
     return (
-        <EmailStyled>
+        <EmailStyled theme={props.theme}>
             {props.email}
         </EmailStyled>
     )

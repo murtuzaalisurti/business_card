@@ -14,8 +14,7 @@ export const CardWrap = styled.div`
 `;
 
 export const CardStyled = styled.div`
-    background-color: #1A1B21;
-    background-color: ${props => props.color || "#1A1B21"};
+    background-color: ${props => props.theme === "dark" ? "#1A1B21" : "#F5F5F5"};
     width: 17rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
@@ -44,11 +43,13 @@ export const IntroductionStyled = styled.div`
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
         color: white;
+        color: ${props => props.theme === "dark" ? "white" : "black"}
     }
     .occupation{
         font-size: 0.8rem;
         font-family: 'Lato', sans-serif;
         color: #F3BF99;
+        color: ${props => props.theme === "dark" ? "#F3BF99" : "#d46c1f"}
     }
     .website{
         font-size: 0.6rem;
@@ -98,9 +99,11 @@ export const AboutWrapper = styled.div`
         font-family: 'Inter', sans-serif;
         font-size: 0.6rem;
         color: #9a9a9a;
+        color: ${props => props.theme === "dark" ? "#9a9a9a" : "#7e7e7e"}
     }
     .title{
         color: #F5F5F5;
+        color: ${props => props.theme === "dark" ? "#F5F5F5" : "#252525"};
         font-size: 1rem;
         font-weight: bold;
         margin-bottom: 0.2rem;
@@ -126,4 +129,6 @@ export const EmailStyled = styled(SocialsStyled)`
     font-size: 0.6rem;
     font-family: 'Poppins', sans-serif;
     padding: 0.8rem 0.5rem;
+    color: ${props => props.theme === "dark" ? "#918E9B" : "#747474"};
+    background-color: ${props => props.theme === "dark" ? "#161619" : "#D5D4D8"};
 `;
