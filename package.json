@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "downloadjs": "^1.4.7",
     "html-to-image": "^1.9.0",
     "html2canvas": "^1.4.0",
     "mini-css-extract-plugin": "2.4.5",
