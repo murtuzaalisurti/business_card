@@ -15,6 +15,20 @@ export const UserInputWrap = styled.div`
     #image{
         display: none;
     }
+    
+
+    input[type="color"] {
+	    /* -webkit-appearance: none; */
+	    border: none;
+	    width: 32px;
+	    height: 32px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+    	padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+    	border: none;
+    }
 `;
 
 export const Input = styled.input`

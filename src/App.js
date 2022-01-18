@@ -43,7 +43,7 @@ function App() {
         <Textarea type="text" onChange={(e) => {setAbout(e.target.value)}} value={about} id="about" placeholder="A little bit about you.." rows="5" required autoComplete="off" />
         <Textarea type="text" onChange={(e) => {setServices(e.target.value)}} value={services} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
         <Button onClick={() => {download_image()}}>Download</Button>
-        <Input type="color" onChange={(e) => {setColor(e.target.value)}} value={color} id="color" placeholder="choose color" style={{display: 'none'}} />
+        <input type="color" onChange={(e) => {setColor(e.target.value)}} value={color} id="color" placeholder="choose color" style={{display: 'none'}} />
       </UserInputWrap>
       <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram color={color} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
     </>
