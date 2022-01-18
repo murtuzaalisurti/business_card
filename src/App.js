@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <UserInputWrap>
-        <HeadingStyled style={{fontSize: '2rem'}}>Business Card Generator</HeadingStyled>
+        <HeadingStyled className="main-heading">Business Card Generator</HeadingStyled>
         <Label htmlFor="image" id="upload_label">Upload Profile Pic</Label>
         <Input type="file" onChange={(e) => {setImage(e.target.files[0])}} id="image" placeholder="Upload an image" required />
         <Input type="text" onChange={(e) => {setName(e.target.value)}} value={name} id="name" placeholder="Your name?" required autoComplete="off" />
@@ -61,9 +61,9 @@ function App() {
           <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'black'}} />
           <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'white'}} />
         </ThemesWrap>
-        <Button onClick={() => {download_image()}}>Download</Button>
+        <Button className="for-desktop" onClick={() => {download_image()}}>Download<i className="fas fa-download"></i></Button>
       </UserInputWrap>
-      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
+      <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} download_fun={download_image} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
     </>
   );
 }

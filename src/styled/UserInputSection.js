@@ -13,6 +13,12 @@ export const UserInputWrap = styled.div`
     input, textarea, button, label {
         font-family: 'Poppins', sans-serif;
     }
+
+    @media screen and (max-width: 45em){
+        width: 80%;
+        align-items: center;
+        padding: 0;
+    }
 `;
 
 export const Input = styled.input`
@@ -58,6 +64,24 @@ export const Button = styled.button`
     border-radius: 0.4rem;
     margin-bottom: 2rem;
     cursor: pointer;
+
+    > i{
+        margin-left: 1rem;
+    }
+
+    &.for-mobile{
+        display: none;
+    }
+
+    @media screen and (max-width: 45em){
+        &.for-mobile{
+            display: block;
+            margin-top: 2rem;
+        }
+        &.for-desktop{
+            display: none;
+        }
+    }
 `;
 
 export const ThemesWrap = styled.div`

@@ -11,6 +11,10 @@ export const CardWrap = styled.div`
     position: sticky;
     top: 2rem;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 45em){
+        width: 80%;
+    }
 `;
 
 export const CardStyled = styled.div`
