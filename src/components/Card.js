@@ -5,6 +5,7 @@ import Introduction from './Introduction'
 import About from './About'
 import Email from './Email'
 import location from '../assets/profile_final_2.png'
+import { Button } from '../styled/UserInputSection'
 
 const Card = (props) => {
     var src = {
@@ -30,6 +31,7 @@ const Card = (props) => {
                         </IntroductionWrapperStyled>
                     </MainContentWrapperStyled>
                 </CardStyled>
+                <Button className="for-mobile" onClick={() => {props.download_fun()}}>Download<i className="fas fa-download"></i></Button>
             </CardWrap>
         </>
     )
