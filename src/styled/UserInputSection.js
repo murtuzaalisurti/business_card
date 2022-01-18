@@ -32,8 +32,12 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     background-color: #1A1B21;
     color: #6e6e6e;
+    transition: color 0.3s ease-in-out;
     outline: none;
     border: 1px solid transparent;
     border-radius: 0.4rem;
@@ -41,6 +45,14 @@ export const Label = styled.label`
     font-size: 0.85rem;
     cursor: pointer;
     width: 85%;
+
+    > i{
+        font-size: 1.5rem;
+    }
+
+    &:hover{
+        color: #ffffff;
+    }
 `;
 
 export const Textarea = styled.textarea`
@@ -71,6 +83,11 @@ export const Button = styled.button`
 
     &.for-mobile{
         display: none;
+    }
+
+    &:hover{
+        background-color: #ffa665;
+        transition: background-color 0.3s ease-in;
     }
 
     @media screen and (max-width: 45em){
@@ -108,4 +125,8 @@ export const SelectTheme = styled.div`
     border: 0.2rem solid transparent;
     border-radius: 50%;
     cursor: pointer;
+
+    &:hover{
+        box-shadow: 0 0 1rem 0rem #ffb681;
+    }
 `;

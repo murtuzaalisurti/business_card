@@ -48,7 +48,7 @@ function App() {
     <>
       <UserInputWrap>
         <HeadingStyled className="main-heading">Business Card Generator</HeadingStyled>
-        <Label htmlFor="image" id="upload_label">Upload Profile Pic</Label>
+        <Label htmlFor="image" id="upload_label">Upload Profile Pic<i class="fas fa-user-circle"></i></Label>
         <Input type="file" onChange={(e) => {setImage(e.target.files[0])}} id="image" placeholder="Upload an image" required />
         <Input type="text" onChange={(e) => {setName(e.target.value)}} value={name} id="name" placeholder="Your name?" required autoComplete="off" />
         <Input type="text" onChange={(e) => {setOccupation(e.target.value)}} value={occupation} id="occupation" placeholder="Profession" required autoComplete="off" />
