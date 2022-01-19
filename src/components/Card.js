@@ -6,6 +6,7 @@ import About from './About'
 import Email from './Email'
 import location from '../assets/profile_final_2.png'
 import { Button } from '../styled/UserInputSection'
+import Tilt from 'react-tilt'
 
 const Card = (props) => {
     var src = {
@@ -19,6 +20,7 @@ const Card = (props) => {
         <>
             <CardWrap id="cardwrap">
                 <HeadingStyled>Preview</HeadingStyled>
+                <Tilt className="Tilt" options={{max: 20, scale: 1.01, perspective: 1100, speed: 500, reverse: false, transition: true}}>
                 <CardStyled className="card" id="card" theme={props.theme}>
                     <ImageWrapperStyled>
                         <ImageLayer image_src={src.img_src} />
@@ -31,6 +33,7 @@ const Card = (props) => {
                         </IntroductionWrapperStyled>
                     </MainContentWrapperStyled>
                 </CardStyled>
+                </Tilt>
                 <Button className="for-mobile" onClick={() => {props.download_fun()}}>Download<i className="fas fa-download"></i></Button>
             </CardWrap>
         </>
