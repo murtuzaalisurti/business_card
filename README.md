@@ -1,3 +1,3 @@
-# Business Card Generator
+# Contact Card Generator
 
-Try it out [here](https://business-card-scrimba.vercel.app/)
+Try it out [here](https://contact-card.vercel.app/)
