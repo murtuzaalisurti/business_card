@@ -22,6 +22,9 @@ function App() {
       document.querySelector("#upload_label").innerHTML = "Uploaded Successfully";
     }
   }
+  function imageChange(e){
+    setImage(URL.createObjectURL(new Blob([e.target.files[0]], {type: "image"})));
+  }
 
   function download_image(){
     htmlToImage.toPng(document.querySelector("#card"), {
@@ -51,7 +54,7 @@ function App() {
         <UserInputWrap>
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
           <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-          <Input type="file" onChange={(e) => {setImage(e.target.files[0])}} id="image" placeholder="Upload an image" required />
+          <Input type="file" onChange={(e) => {imageChange(e)}} id="image" placeholder="Upload an image" required />
           <Input type="text" onChange={(e) => {setName(e.target.value)}} value={name} id="name" placeholder="Your name?" required autoComplete="off" />
           <Input type="text" onChange={(e) => {setOccupation(e.target.value)}} value={occupation} id="occupation" placeholder="Profession" required autoComplete="off" />
           <Input type="text" onChange={(e) => {setWebsite(e.target.value)}} value={website} id="website" placeholder="Website" required autoComplete="off" />
@@ -65,7 +68,7 @@ function App() {
           </ThemesWrap>
           <Button className="for-desktop" onClick={() => {download_image()}}>Download<i className="fas fa-download"></i></Button>
         </UserInputWrap>
-        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} download_fun={download_image} image_src={URL.createObjectURL(new Blob([image], {type: "image"}))} />
+        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} download_fun={download_image} image_src={image} />
       </div>
       <Footer />
     </>
