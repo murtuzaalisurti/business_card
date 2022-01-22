@@ -15,7 +15,16 @@ function App() {
   const [about, setAbout] = useState();
   const [services, setServices] = useState();
   const [image, setImage] = useState();
-  const [theme, setTheme] = useState("dark");
+  const [colors, setColors] = useState({
+    cardBackgroundColor: "#1A1B21",
+    nameColor: "#FFFFFF",
+    occupationColor: "#F3BF99",
+    websiteColor: "#767676",
+    aboutInterestsTitleColor: "#F5F5F5",
+    descColor: "#9a9a9a",
+    emailColor: "#918E9B",
+    emailBackgroundColor: "#161619"
+  });
 
   if(document.querySelector("#image") !== null){
     if(document.querySelector("#image").files.length === 1){
@@ -26,26 +35,64 @@ function App() {
     setImage(URL.createObjectURL(new Blob([e.target.files[0]], {type: "image"})));
   }
 
+  function colorChange(e) {
+
+    function borderChange(element){
+      element.style.borderColor = "#ffb681";
+      let all_color_selectors = element.parentElement.childNodes;
+      all_color_selectors.forEach((item) => {
+        if(item.localName !== "p"){
+          if(item !== element){
+            item.style.borderColor = "transparent";
+          }
+        }
+      })
+    }
+    if(e.target.style.backgroundColor === "rgb(88, 44, 77)"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#582C4D",
+        nameColor: "#ECE2D0",
+        occupationColor: "#F3BF99",
+        websiteColor: "#BFB5AF",
+        aboutInterestsTitleColor: "#ECE2D0",
+        descColor: "#D6CCC0",
+        emailColor: "#BFB5AF",
+        emailBackgroundColor: "#6B3B54"
+      })
+    } else if(e.target.style.backgroundColor === "black"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#1A1B21",
+        nameColor: "#FFFFFF",
+        occupationColor: "#F3BF99",
+        websiteColor: "#767676",
+        aboutInterestsTitleColor: "#F5F5F5",
+        descColor: "#9a9a9a",
+        emailColor: "#918E9B",
+        emailBackgroundColor: "#161619"
+      })
+    } else if(e.target.style.backgroundColor === "white"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#F5F5F5",
+        nameColor: "#000000",
+        occupationColor: "#d46c1f",
+        websiteColor: "#767676",
+        aboutInterestsTitleColor: "#252525",
+        descColor: "#7e7e7e",
+        emailColor: "#747474",
+        emailBackgroundColor: "#D5D4D8"
+      })
+    }
+  }
+
   function download_image(){
     htmlToImage.toPng(document.querySelector("#card"), {
       quality: 1.0
     }).then((dataUrl) => {
       download(dataUrl, 'business_card_image')
     })
-  }
-
-  function theme_change(e){
-    e.target.style.backgroundColor === "black" ? setTheme("dark") : setTheme("light");
-    e.target.style.borderColor = '#ffb681';
-
-    if(e.target.nextSibling == null){
-      console.log(e.target)
-      e.target.previousSibling.style.borderColor = 'transparent';
-    } 
-    if (e.target.nextSibling !== null){
-      console.log(e.target)
-      e.target.nextSibling.style.borderColor = 'transparent';
-    }
   }
 
   return (
@@ -63,12 +110,13 @@ function App() {
           <Textarea type="text" onChange={(e) => {setServices(e.target.value)}} value={services} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
           <ThemesWrap>
             <p>Theme </p>
-            <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'black'}} />
-            <SelectTheme onClick={(e) => {theme_change(e)}} style={{backgroundColor: 'white'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: 'black'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: 'white'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#582C4D'}} />
           </ThemesWrap>
           <Button className="for-desktop" onClick={() => {download_image()}}>Download<i className="fas fa-download"></i></Button>
         </UserInputWrap>
-        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram theme={theme} download_fun={download_image} image_src={image} />
+        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} />
       </div>
       <Footer />
     </>
