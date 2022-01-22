@@ -38,7 +38,7 @@ function App() {
   function colorChange(e) {
 
     function borderChange(element){
-      element.style.borderColor = "#ffb681";
+      element.style.borderColor = "#000000"; //#ffb681
       let all_color_selectors = element.parentElement.childNodes;
       all_color_selectors.forEach((item) => {
         if(item.localName !== "p"){
@@ -84,6 +84,43 @@ function App() {
         emailColor: "#747474",
         emailBackgroundColor: "#D5D4D8"
       })
+    } else if (e.target.style.backgroundColor === "rgb(61, 90, 128)"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#3D5A80",
+        nameColor: "#E0FBFC",
+        occupationColor: "#E7B4A5",
+        websiteColor: "#98C1D9",
+        aboutInterestsTitleColor: "#E0FBFC",
+        descColor: "#98C1D9",
+        emailColor: "#98C1D9",
+        emailBackgroundColor: "#385071"
+      })
+    } else if (e.target.style.backgroundColor === "rgb(244, 232, 193)"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#F4E8C1",
+        nameColor: "#502419",
+        occupationColor: "#2B4141",
+        websiteColor: "#A2866D",
+        aboutInterestsTitleColor: "#502419",
+        descColor: "#795543",
+        emailColor: "#502419",
+        emailBackgroundColor: "#E0D0AC"
+      })
+    }
+    else if (e.target.style.backgroundColor === "rgb(238, 180, 179)"){
+      borderChange(e.target);
+      setColors({
+        cardBackgroundColor: "#EEB4B3",
+        nameColor: "#402350",
+        occupationColor: "#784784",
+        websiteColor: "#2F242C",
+        aboutInterestsTitleColor: "#402350",
+        descColor: "#784784",
+        emailColor: "#402350",
+        emailBackgroundColor: "#DBA2AC"
+      })
     }
   }
 
@@ -113,6 +150,9 @@ function App() {
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: 'black'}} />
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: 'white'}} />
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#582C4D'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#3D5A80'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#F4E8C1'}} />
+            <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#EEB4B3'}} />
           </ThemesWrap>
           <Button className="for-desktop" onClick={() => {download_image()}}>Download<i className="fas fa-download"></i></Button>
         </UserInputWrap>
