@@ -18,7 +18,7 @@ export const CardWrap = styled.div`
 `;
 
 export const CardStyled = styled.div`
-    background-color: ${props => props.theme === "dark" ? "#1A1B21" : "#F5F5F5"};
+    background-color: ${props => props.colors.cardBackgroundColor};
     width: 17rem;
     border: 1px solid transparent;
     border-radius: 0.9rem;
@@ -46,19 +46,17 @@ export const IntroductionStyled = styled.div`
         font-size: 1.3rem;
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
-        color: white;
-        color: ${props => props.theme === "dark" ? "white" : "black"}
+        color: ${props => props.colors.nameColor}
     }
     .occupation{
         font-size: 0.8rem;
         font-family: 'Lato', sans-serif;
-        color: #F3BF99;
-        color: ${props => props.theme === "dark" ? "#F3BF99" : "#d46c1f"}
+        color: ${props => props.colors.occupationColor};
     }
     .website{
         font-size: 0.6rem;
         margin-top: 0.5rem;
-        color: #767676;
+        color: ${props => props.colors.websiteColor};
         font-family: 'Inter', sans-serif;
     }
 `;
@@ -102,12 +100,10 @@ export const AboutWrapper = styled.div`
     .title, .desc{
         font-family: 'Inter', sans-serif;
         font-size: 0.6rem;
-        color: #9a9a9a;
-        color: ${props => props.theme === "dark" ? "#9a9a9a" : "#7e7e7e"}
+        color: ${props => props.colors.descColor};
     }
     .title{
-        color: #F5F5F5;
-        color: ${props => props.theme === "dark" ? "#F5F5F5" : "#252525"};
+        color: ${props => props.colors.aboutInterestsTitleColor};
         font-size: 1rem;
         font-weight: bold;
         margin-bottom: 0.2rem;
@@ -133,6 +129,6 @@ export const EmailStyled = styled(SocialsStyled)`
     font-size: 0.6rem;
     font-family: 'Poppins', sans-serif;
     padding: 0.8rem 0.5rem;
-    color: ${props => props.theme === "dark" ? "#918E9B" : "#747474"};
-    background-color: ${props => props.theme === "dark" ? "#161619" : "#D5D4D8"};
+    color: ${props => props.colors.emailColor};
+    background-color: ${props => props.colors.emailBackgroundColor};
 `;

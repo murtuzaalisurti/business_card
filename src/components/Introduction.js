@@ -3,7 +3,7 @@ import {IntroductionStyled} from '../styled/StyledCard'
 
 const Introduction = (props) => {
     return (
-        <IntroductionStyled theme={props.theme}>
+        <IntroductionStyled colors={props.colors}>
           <p className="name">{props.name}</p>
           <p className="occupation">{props.occupation}</p>
           <p className="website">{props.website}</p>  
