@@ -103,7 +103,8 @@ export const Button = styled.button`
 
 export const ThemesWrap = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: center;
     width: fit-content;
     gap: 1rem;
@@ -112,6 +113,15 @@ export const ThemesWrap = styled.div`
     background-color: #1A1B21;
     padding: 0.7rem 1rem;
     border-radius: 0.4rem;
+
+    @media screen and (max-width: 45em){
+        justify-content: center;
+        p{
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+    }
     
     p{
         color: #6e6e6e;
