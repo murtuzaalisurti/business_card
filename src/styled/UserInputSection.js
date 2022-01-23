@@ -13,6 +13,9 @@ export const UserInputWrap = styled.div`
     input, textarea, button, label {
         font-family: 'Poppins', sans-serif;
     }
+    input, textarea, button, label, input::placeholder, textarea::placeholder{
+        font-size: 0.85rem;
+    }
 
     @media screen and (max-width: 45em){
         width: 80%;
@@ -106,7 +109,7 @@ export const ThemesWrap = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    width: fit-content;
+    width: 85%;
     gap: 1rem;
     font-size: 0.85rem;
     font-family: 'Poppins', sans-serif;
