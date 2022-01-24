@@ -15,6 +15,7 @@ function App() {
   const [about, setAbout] = useState();
   const [services, setServices] = useState();
   const [image, setImage] = useState();
+  const [downloadState, setDownloadState] = useState(false);
   const [colors, setColors] = useState({
     cardBackgroundColor: "#1A1B21",
     nameColor: "#FFFFFF",
@@ -125,10 +126,18 @@ function App() {
   }
 
   function download_image(){
+    setDownloadState(true);
     htmlToImage.toPng(document.querySelector("#card"), {
       quality: 1.0
     }).then((dataUrl) => {
       download(dataUrl, 'business_card_image')
+
+      setDownloadState(true);
+
+      setTimeout(() => {
+        setDownloadState(false);
+      }, 1000)
+      
     })
   }
 
@@ -154,9 +163,9 @@ function App() {
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#F4E8C1'}} />
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: '#EEB4B3'}} />
           </ThemesWrap>
-          <Button className="for-desktop" onClick={() => {download_image()}}>Download<i className="fas fa-download"></i></Button>
+          <Button className="for-desktop download_btn" onClick={() => {download_image()}}>Download<i className={downloadState ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
         </UserInputWrap>
-        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} />
+        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} download_state={downloadState} />
       </div>
       <Footer />
     </>
