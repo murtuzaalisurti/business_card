@@ -34,7 +34,7 @@ const Card = (props) => {
                         </MainContentWrapperStyled>
                     </CardStyled>
                 </Tilt>
-                <Button className="for-mobile" onClick={() => { props.download_fun() }}>Download<i className="fas fa-download"></i></Button>
+                <Button className="for-mobile download_btn" onClick={() => { props.download_fun() }}>Download<i className={props.download_state ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
             </CardWrap>
         </>
     )

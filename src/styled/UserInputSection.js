@@ -83,6 +83,18 @@ export const Button = styled.button`
     > i{
         margin-left: 1rem;
     }
+    .load{
+        transform: rotate(0deg);
+        animation: load 1s ease-out infinite both;
+    }
+    @keyframes load{
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
 
     &.for-mobile{
         display: none;
