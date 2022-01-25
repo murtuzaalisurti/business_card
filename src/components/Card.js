@@ -16,24 +16,27 @@ const Card = (props) => {
         src.img_src = location
     }
 
+    // card JSX element
+    const cardWithStylesJSX = (
+        <CardStyled className="card" id="card" colors={props.colors}>
+            <ImageWrapperStyled>
+                <ImageLayer image_src={src.img_src} />
+            </ImageWrapperStyled>
+            <MainContentWrapperStyled>
+                <IntroductionWrapperStyled>
+                    <Introduction name={props.name} occupation={props.occupation} website={props.website} colors={props.colors} />
+                    <About about={props.about} services={props.services} colors={props.colors} />
+                    <Email email={props.email} colors={props.colors} />
+                </IntroductionWrapperStyled>
+            </MainContentWrapperStyled>
+        </CardStyled>
+    );
+
     return (
         <>
             <CardWrap id="cardwrap">
                 <HeadingStyled>Preview</HeadingStyled>
-                <Tilt className="Tilt" options={{ max: 20, scale: 1.01, perspective: 1100, speed: 500, reverse: false, transition: true }}>
-                    <CardStyled className="card" id="card" colors={props.colors}>
-                        <ImageWrapperStyled>
-                            <ImageLayer image_src={src.img_src} />
-                        </ImageWrapperStyled>
-                        <MainContentWrapperStyled>
-                            <IntroductionWrapperStyled>
-                                <Introduction name={props.name} occupation={props.occupation} website={props.website} colors={props.colors} />
-                                <About about={props.about} services={props.services} colors={props.colors} />
-                                <Email email={props.email} colors={props.colors} />
-                            </IntroductionWrapperStyled>
-                        </MainContentWrapperStyled>
-                    </CardStyled>
-                </Tilt>
+                { props.breakpoint <= 43 ? cardWithStylesJSX : <Tilt className="Tilt" options={{ max: 20, scale: 1.01, perspective: 1100, speed: 500, reverse: false, transition: true }}>{cardWithStylesJSX}</Tilt> }
                 <Button className="for-mobile download_btn" onClick={() => { props.download_fun() }}>Download<i className={props.download_state ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
             </CardWrap>
         </>
@@ -48,9 +51,9 @@ Card.defaultProps = {
     linkedin: "https://www.linkedin.com/in/murtuzaali-surti/",
     about: "Hey, myself Murtuza and I am a Front-end Web Developer & a Blogger. I am specialized in JavaScript as well as Responsive Web Design. Content Creation suits me well.",
     services: "I offer front-end web development, technical writing, blogging or full stack web development as a service.",
-    github: "http://github.com/murtuzaalisurti",
-    twitter: "http://twitter.com/murtuza_surti",
-    instagram: "http://instagram.com/murtuzaali_surti",
+    github: "https://github.com/murtuzaalisurti",
+    twitter: "https://twitter.com/murtuza_surti",
+    instagram: "https://instagram.com/murtuzaali_surti",
     image_src: location
 }
 

@@ -16,6 +16,7 @@ function App() {
   const [services, setServices] = useState();
   const [image, setImage] = useState();
   const [downloadState, setDownloadState] = useState(false);
+  const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth/16));
   const [colors, setColors] = useState({
     cardBackgroundColor: "#1A1B21",
     nameColor: "#FFFFFF",
@@ -141,6 +142,10 @@ function App() {
     })
   }
 
+  window.addEventListener('resize', () => {
+    setBreakpoint(Math.round((window.document.body.clientWidth)/16));
+  })
+
   return (
     <>
       <div id="main">
@@ -165,7 +170,7 @@ function App() {
           </ThemesWrap>
           <Button className="for-desktop download_btn" onClick={() => {download_image()}}>Download<i className={downloadState ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
         </UserInputWrap>
-        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} download_state={downloadState} />
+        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} download_state={downloadState} breakpoint={breakpoint} />
       </div>
       <Footer />
     </>
