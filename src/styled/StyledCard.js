@@ -10,10 +10,11 @@ export const CardWrap = styled.div`
     width: 40%;
     position: sticky;
     top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 
     @media screen and (max-width: 45em){
         width: 80%;
+        margin-bottom: 2rem;
     }
 `;
 

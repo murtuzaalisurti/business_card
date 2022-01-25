@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledFooter = styled.div`
-    margin: 4rem 0rem 5rem 0rem;
     padding-bottom: 2rem;
 
     .text1{
