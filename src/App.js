@@ -8,14 +8,16 @@ import download from 'downloadjs'
 
 function App() {
 
-  const [name, setName] = useState();
-  const [occupation, setOccupation] = useState();
-  const [website, setWebsite] = useState();
-  const [email, setEmail] = useState();
-  const [about, setAbout] = useState();
-  const [services, setServices] = useState();
   const [image, setImage] = useState();
   const [downloadState, setDownloadState] = useState(false);
+  const [inputs, setInputs] = useState({
+    name: undefined,
+    occupation: undefined,
+    website: undefined,
+    email: undefined,
+    about: undefined,
+    services: undefined
+  });
   const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth/16));
   const [colors, setColors] = useState({
     cardBackgroundColor: "#1A1B21",
@@ -35,6 +37,15 @@ function App() {
   }
   function imageChange(e){
     setImage(URL.createObjectURL(new Blob([e.target.files[0]], {type: "image"})));
+  }
+
+  function inputChange(e) {
+    setInputs(prev => {
+      return {
+        ...prev, 
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
   function colorChange(e) {
@@ -146,6 +157,10 @@ function App() {
     setBreakpoint(Math.round((window.document.body.clientWidth)/16));
   })
 
+  function props_conf(field) {
+    return inputs[field] === '' ? undefined : inputs[field];
+  }
+
   return (
     <>
       <div id="main">
@@ -153,12 +168,12 @@ function App() {
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
           <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
           <Input type="file" onChange={(e) => {imageChange(e)}} id="image" placeholder="Upload an image" required />
-          <Input type="text" onChange={(e) => {setName(e.target.value)}} value={name} id="name" placeholder="Your name?" required autoComplete="off" />
-          <Input type="text" onChange={(e) => {setOccupation(e.target.value)}} value={occupation} id="occupation" placeholder="Profession" required autoComplete="off" />
-          <Input type="text" onChange={(e) => {setWebsite(e.target.value)}} value={website} id="website" placeholder="Website" required autoComplete="off" />
-          <Input type="email" onChange={(e) => {setEmail(e.target.value)}} value={email} id="email" placeholder="Email" required autoComplete="off" />
-          <Textarea type="text" onChange={(e) => {setAbout(e.target.value)}} value={about} id="about" placeholder="A little bit about you.." rows="5" required autoComplete="off" />
-          <Textarea type="text" onChange={(e) => {setServices(e.target.value)}} value={services} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
+          <Input type="text" name="name" onChange={inputChange} value={inputs.name || ""} id="name" placeholder="Your name?" required autoComplete="off" />
+          <Input type="text" name="occupation" onChange={inputChange} value={inputs.occupation || ""} id="occupation" placeholder="Profession" required autoComplete="off" />
+          <Input type="text" name="website" onChange={inputChange} value={inputs.website || ""} id="website" placeholder="Website" required autoComplete="off" />
+          <Input type="email" name="email" onChange={inputChange} value={inputs.email || ""} id="email" placeholder="Email" required autoComplete="off" />
+          <Textarea type="text" name="about" onChange={inputChange} value={inputs.about || ""} id="about" placeholder="A little bit about you.." rows="5" required autoComplete="off" />
+          <Textarea type="text" name="services" onChange={inputChange} value={inputs.services || ""} id="interests" placeholder="Services offered..." rows="5" required autoComplete="off" />
           <ThemesWrap>
             <p>Theme </p>
             <SelectTheme onClick={(e) => {colorChange(e)}} style={{backgroundColor: 'black'}} />
@@ -170,7 +185,7 @@ function App() {
           </ThemesWrap>
           <Button className="for-desktop download_btn" onClick={() => {download_image()}}>Download<i className={downloadState ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
         </UserInputWrap>
-        <Card name={name} occupation={occupation} website={website} email={email} linkedin about={about} services={services} github twitter instagram colors={colors} download_fun={download_image} image_src={image} download_state={downloadState} breakpoint={breakpoint} />
+        <Card name={props_conf('name')} occupation={props_conf('occupation')} website={props_conf('website')} email={props_conf('email')} linkedin about={props_conf('about')} services={props_conf('services')} github twitter instagram colors={colors} download_fun={download_image} image_src={image} download_state={downloadState} breakpoint={breakpoint} />
       </div>
       <Footer />
     </>
