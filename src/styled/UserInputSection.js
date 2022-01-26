@@ -78,7 +78,8 @@ export const Button = styled.button`
     border: 1px solid transparent;
     border-radius: 0.4rem;
     margin-bottom: 2rem;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+    opacity: ${props => props.disabled ? 0.3 : 1};
 
     > i{
         margin-left: 1rem;
@@ -101,7 +102,7 @@ export const Button = styled.button`
     }
 
     &:hover{
-        background-color: #ffa665;
+        background-color: ${props => !props.disabled && '#ffa665'};
         transition: background-color 0.3s ease-in;
     }
 

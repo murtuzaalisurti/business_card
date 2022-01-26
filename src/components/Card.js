@@ -37,7 +37,7 @@ const Card = (props) => {
             <CardWrap id="cardwrap">
                 <HeadingStyled>Preview</HeadingStyled>
                 { props.breakpoint <= 43 ? cardWithStylesJSX : <Tilt className="Tilt" options={{ max: 20, scale: 1.01, perspective: 1100, speed: 500, reverse: false, transition: true }}>{cardWithStylesJSX}</Tilt> }
-                <Button className="for-mobile download_btn" onClick={() => { props.download_fun() }}>Download<i className={props.download_state ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
+                <Button className="for-mobile download_btn" disabled={props.downloadable ? false : true} title={props.downloadable ? "" : "Please fill out all fields"} onClick={() => { props.download_fun() }}>Download<i className={props.download_state ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
             </CardWrap>
         </>
     )
