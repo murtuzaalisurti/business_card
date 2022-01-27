@@ -110,6 +110,20 @@ export const Button = styled.button`
         &.for-mobile{
             display: block;
             margin-top: 2rem;
+
+            .content{
+                font-family: 'Poppins', sans-serif;
+                
+                > i{
+                    margin-left: 0.5rem;
+                }
+
+                .warn{
+                    margin-top: 0.3rem;
+                    font-size: 0.6rem;
+                    font-style: italic;
+                }
+            }
         }
         &.for-desktop{
             display: none;
