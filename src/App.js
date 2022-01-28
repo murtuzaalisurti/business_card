@@ -34,11 +34,18 @@ function App() {
 
   if (document.querySelector("#image") !== null) {
     if (document.querySelector("#image").files.length === 1) {
-      document.querySelector("#upload_label").innerHTML = "Uploaded Successfully";
+      document.querySelector("#upload_label").innerHTML = "Uploaded Successfully!";
+      setTimeout(() => {
+        document.querySelector("#upload_label").innerHTML = "Upload new pic";
+      }, 2500)
     }
   }
   function imageChange(e) {
-    setImage(URL.createObjectURL(new Blob([e.target.files[0]], { type: "image" })));
+    if (e.target.files[0].type.split("/")[0] === "image") {
+      setImage(URL.createObjectURL(new Blob([e.target.files[0]], { type: "image" })));
+    } else {
+      document.querySelector("#upload_label").innerHTML = "Please upload an image file";
+    }
   }
 
   function inputChange(e) {
@@ -49,9 +56,9 @@ function App() {
       }
     })
   }
-  
+
   function input_check() {
-    
+
     let filled = {
       inputs: false,
       textarea: false,
@@ -61,28 +68,28 @@ function App() {
     let all_input_fields = document.querySelectorAll("input");
     let textareas = document.querySelectorAll("textarea");
 
-    for(let index = 0; index < all_input_fields.length; index++) {
+    for (let index = 0; index < all_input_fields.length; index++) {
 
-      if(index === 0) {
-        if(all_input_fields[index].files.length !== 0){
+      if (index === 0) {
+        if (all_input_fields[index].files.length !== 0) {
           filled.image = true;
         }
       } else {
-        if(all_input_fields[index].value === undefined || all_input_fields[index].value === ""){
+        if (all_input_fields[index].value === undefined || all_input_fields[index].value === "") {
           filled.inputs = false;
           break;
-        } else if(all_input_fields[index].value !== undefined || all_input_fields[index].value !== ""){
+        } else if (all_input_fields[index].value !== undefined || all_input_fields[index].value !== "") {
           filled.inputs = true;
         }
       }
 
     }
 
-    for(let index = 0; index < textareas.length; index++){
-      if(textareas[index].value === ""){
+    for (let index = 0; index < textareas.length; index++) {
+      if (textareas[index].value === "") {
         filled.textarea = false;
         break;
-      } else if(textareas[index].value !== ""){
+      } else if (textareas[index].value !== "") {
         filled.textarea = true;
       }
     }
@@ -209,7 +216,7 @@ function App() {
         <UserInputWrap>
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
           <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-          <Input type="file" onChange={(e) => { imageChange(e); input_check(); }} id="image" placeholder="Upload an image" required />
+          <Input type="file" accept="image/*" onChange={(e) => { imageChange(e); input_check(); }} id="image" placeholder="Upload an image" required />
           <Input type="text" name="name" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.name || ""} id="name" placeholder="Your name?" required autoComplete="off" />
           <Input type="text" name="occupation" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.occupation || ""} id="occupation" placeholder="Profession" required autoComplete="off" />
           <Input type="text" name="website" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.website || ""} id="website" placeholder="Website" required autoComplete="off" />
