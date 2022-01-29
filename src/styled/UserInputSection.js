@@ -28,7 +28,7 @@ export const Input = styled.input`
     background-color: #1A1B21;
     color: #ffffff;
     outline: none;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
     width: 85%;
@@ -42,7 +42,7 @@ export const Label = styled.label`
     color: #6e6e6e;
     transition: color 0.3s ease-in-out;
     outline: none;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
     font-size: 0.85rem;
@@ -56,13 +56,16 @@ export const Label = styled.label`
     &:hover{
         color: #ffffff;
     }
+    &.focus{
+        border: 3px solid red;
+    }
 `;
 
 export const Textarea = styled.textarea`
     background-color: #1A1B21;
     color: #ffffff;
     outline: none;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
     border-radius: 0.4rem;
     padding: 0.7rem 1rem;
     width: 85%;

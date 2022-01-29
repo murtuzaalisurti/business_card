@@ -2,7 +2,7 @@ import Card from "./components/Card";
 import { UserInputWrap, Input, Textarea, Label, Button, ThemesWrap, SelectTheme } from './styled/UserInputSection'
 import { HeadingStyled } from './styled/Headings'
 import Footer from './components/Footer'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as htmlToImage from 'html-to-image'
 import download from 'downloadjs'
 import img_location from './assets/profile_final_2.png'
@@ -10,6 +10,11 @@ import img_location from './assets/profile_final_2.png'
 function App() {
 
   const [image, setImage] = useState(img_location);
+  const [isImageModified, setIsImageModified] = useState({
+    status: false,
+    fileType: "",
+    target: {}
+  });
   const [downloadState, setDownloadState] = useState(false);
   const [downloadable, setDownloadable] = useState(false);
   const [inputs, setInputs] = useState({
@@ -32,21 +37,26 @@ function App() {
     emailBackgroundColor: "#161619"
   });
 
-  if (document.querySelector("#image") !== null) {
-    if (document.querySelector("#image").files.length === 1) {
-      document.querySelector("#upload_label").innerHTML = "Uploaded Successfully!";
-      setTimeout(() => {
-        document.querySelector("#upload_label").innerHTML = "Upload new pic";
-      }, 2500)
+  useEffect(() => {
+    if(isImageModified.status) {
+      if(isImageModified.fileType === "image"){
+        if (document.querySelector("#image") !== null) {
+          if (document.querySelector("#image").files.length === 1) {
+            setImage(URL.createObjectURL(new Blob([isImageModified.target.files[0]], { type: "image" })));
+            document.querySelector("#upload_label").innerHTML = "Uploaded Successfully!";
+            document.querySelector("#upload_label").classList.remove("focus");
+            setTimeout(() => {
+              document.querySelector("#upload_label").innerHTML = "Upload new pic";
+            }, 2500)
+          }
+        }
+      } else {
+        document.querySelector("#upload_label").innerHTML = "Please upload an image file";
+        document.querySelector("#upload_label").classList.add("focus");
+        document.querySelector(".main-heading").scrollIntoView(true, {behavior: "smooth"})
+      }
     }
-  }
-  function imageChange(e) {
-    if (e.target.files[0].type.split("/")[0] === "image") {
-      setImage(URL.createObjectURL(new Blob([e.target.files[0]], { type: "image" })));
-    } else {
-      document.querySelector("#upload_label").innerHTML = "Please upload an image file";
-    }
-  }
+  }, [isImageModified])
 
   function inputChange(e) {
     setInputs(prev => {
@@ -216,7 +226,7 @@ function App() {
         <UserInputWrap>
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
           <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-          <Input type="file" accept="image/*" onChange={(e) => { imageChange(e); input_check(); }} id="image" placeholder="Upload an image" required />
+          <Input type="file" accept="image/*" onChange={(e) => { setIsImageModified({status: true, fileType: e.target.files[0].type.split("/")[0], target: e.target}); input_check(); }} id="image" placeholder="Upload an image" required />
           <Input type="text" name="name" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.name || ""} id="name" placeholder="Your name?" required autoComplete="off" />
           <Input type="text" name="occupation" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.occupation || ""} id="occupation" placeholder="Profession" required autoComplete="off" />
           <Input type="text" name="website" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.website || ""} id="website" placeholder="Website" required autoComplete="off" />

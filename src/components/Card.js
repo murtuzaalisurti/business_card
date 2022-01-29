@@ -47,7 +47,7 @@ Card.defaultProps = {
     name: "Murtuzaali Surti",
     email: "hey.murtuza@gmail.com",
     occupation: "Front-end Web Developer",
-    website: "murtuzaalisurti.github.io",
+    website: "murtuzaali-surti.me",
     linkedin: "https://www.linkedin.com/in/murtuzaali-surti/",
     about: "Hey, myself Murtuza and I am a Front-end Web Developer & a Blogger. I am specialized in JavaScript as well as Responsive Web Design. Content Creation suits me well.",
     services: "I offer front-end web development, technical writing, blogging or full stack web development as a service.",
