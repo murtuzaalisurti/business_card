@@ -215,6 +215,15 @@ function App() {
   window.addEventListener('resize', () => {
     setBreakpoint(Math.round((window.document.body.clientWidth) / 16));
   })
+  let url = new URL(window.location.href)
+  let search = new URLSearchParams(url.searchParams)
+  console.log(window.location.href, search.entries())
+  for(let i of search.entries()){
+    console.log(i)
+    if(i[1] === "producthunt"){
+      console.log(i)
+    }
+  }
 
   function props_conf(field) {
     return inputs[field] === '' ? undefined : inputs[field];
