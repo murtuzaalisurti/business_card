@@ -231,7 +231,9 @@ function App() {
         body: i[1]
       }).then((res) => {
         console.log(res)
-        return res;
+        return res.json();
+      }).then((data) => {
+        console.log(data)
       }).catch((error) => {
         console.log(error)
       })
