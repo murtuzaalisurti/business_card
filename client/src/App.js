@@ -231,10 +231,7 @@ function App() {
         body: i[1]
       }).then((res) => {
         return res;
-      }).then((data) => {
-        console.log(data)
       }).catch((error) => {
-        console.error(error.message)
         console.log(error)
       })
 
