@@ -230,6 +230,7 @@ function App() {
         },
         body: i[1]
       }).then((res) => {
+        console.log(res)
         return res;
       }).catch((error) => {
         console.log(error)
