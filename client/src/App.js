@@ -230,7 +230,7 @@ function App() {
         },
         body: i[1]
       }).then((res) => {
-        return res.json();
+        return res;
       }).then((data) => {
         console.log(data)
       }).catch((error) => {
