@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-// app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(express.json());
 
 app.get('/api', (req, res) => {
@@ -52,9 +52,9 @@ app.post('/analytics', textParser, (req, res) => {
     })()
 })
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 
 app.listen(PORT, () => {
