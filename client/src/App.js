@@ -227,7 +227,7 @@ function App() {
         method: 'POST',
         body: i[1]
       }).then((res) => {
-        return res;
+        return res.json();
       }).then((data) => {
         console.log(data)
       }).catch((error) => {
