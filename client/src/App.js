@@ -224,8 +224,10 @@ function App() {
       console.log(i)
 
       fetch('/analytics', {
-        method: 'POST',
-        Allow: 'GET, POST, PUT, DELETE',
+        method: 'post',
+        headers: {
+          Allow: 'GET, POST, PUT, DELETE'
+        },
         body: i[1]
       }).then((res) => {
         return res.json();
