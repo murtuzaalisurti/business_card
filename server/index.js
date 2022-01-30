@@ -51,7 +51,7 @@ app.post('/analytics', textParser, (req, res) => {
       })
     })()
 
-    // res.status(200).json({sucess: true});
+    res.status(200);
 })
 
 app.get('*', (req, res) => {
