@@ -226,7 +226,7 @@ function App() {
       fetch('/analytics', {
         method: 'post',
         headers: {
-          Allow: 'GET, POST, PUT, DELETE'
+          'Content-Type': 'text/plain'
         },
         body: i[1]
       }).then((res) => {
