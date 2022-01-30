@@ -225,6 +225,7 @@ function App() {
 
       fetch('/analytics', {
         method: 'POST',
+        Allow: 'GET, POST, PUT, DELETE',
         body: i[1]
       }).then((res) => {
         return res.json();
