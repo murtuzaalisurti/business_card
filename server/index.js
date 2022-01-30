@@ -50,6 +50,8 @@ app.post('/analytics', textParser, (req, res) => {
         console.log(reference, visits);
       })
     })()
+
+    res.status(200).json({sucess: true});
 })
 
 app.get('*', (req, res) => {
