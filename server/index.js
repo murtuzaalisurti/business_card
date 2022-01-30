@@ -18,9 +18,9 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(express.json());
 
-app.get('/api', (req, res) => {
-    res.json({data: 'data'})
-})
+// app.get('/api', (req, res) => {
+//     res.json({data: 'data'})
+// })
 
 app.post('/analytics', textParser, (req, res) => {
 
@@ -51,7 +51,7 @@ app.post('/analytics', textParser, (req, res) => {
       })
     })()
 
-    res.status(200).json({sucess: true});
+    // res.status(200).json({sucess: true});
 })
 
 app.get('*', (req, res) => {
