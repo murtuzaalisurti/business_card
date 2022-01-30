@@ -38,8 +38,8 @@ function App() {
   });
 
   useEffect(() => {
-    if(isImageModified.status) {
-      if(isImageModified.fileType === "image"){
+    if (isImageModified.status) {
+      if (isImageModified.fileType === "image") {
         if (document.querySelector("#image") !== null) {
           if (document.querySelector("#image").files.length === 1) {
             setImage(URL.createObjectURL(new Blob([isImageModified.target.files[0]], { type: "image" })));
@@ -53,7 +53,7 @@ function App() {
       } else {
         document.querySelector("#upload_label").innerHTML = "Please upload an image file";
         document.querySelector("#upload_label").classList.add("focus");
-        document.querySelector(".main-heading").scrollIntoView(true, {behavior: "smooth"})
+        document.querySelector(".main-heading").scrollIntoView(true, { behavior: "smooth" })
       }
     }
   }, [isImageModified])
@@ -215,15 +215,30 @@ function App() {
   window.addEventListener('resize', () => {
     setBreakpoint(Math.round((window.document.body.clientWidth) / 16));
   })
-  let url = new URL(window.location.href)
-  let search = new URLSearchParams(url.searchParams)
-  console.log(window.location.href, search.entries())
-  for(let i of search.entries()){
-    console.log(i)
-    if(i[1] === "producthunt"){
+
+  useEffect(() => {
+
+    let url = new URL(window.location.href)
+    let search = new URLSearchParams(url.searchParams)
+    for (let i of search.entries()) {
       console.log(i)
+
+      fetch('/analytics', {
+        method: 'POST',
+        body: i[1]
+      }).then((res) => {
+        return res;
+      }).then((data) => {
+        console.log(data)
+      }).catch((error) => {
+        console.log(error)
+      })
+
     }
-  }
+
+    
+  }, []);
+
 
   function props_conf(field) {
     return inputs[field] === '' ? undefined : inputs[field];
@@ -235,7 +250,7 @@ function App() {
         <UserInputWrap>
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
           <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-          <Input type="file" accept="image/*" onChange={(e) => { setIsImageModified({status: true, fileType: e.target.files[0].type.split("/")[0], target: e.target}); input_check(); }} id="image" placeholder="Upload an image" required />
+          <Input type="file" accept="image/*" onChange={(e) => { setIsImageModified({ status: true, fileType: e.target.files[0].type.split("/")[0], target: e.target }); input_check(); }} id="image" placeholder="Upload an image" required />
           <Input type="text" name="name" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.name || ""} id="name" placeholder="Your name?" required autoComplete="off" />
           <Input type="text" name="occupation" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.occupation || ""} id="occupation" placeholder="Profession" required autoComplete="off" />
           <Input type="text" name="website" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.website || ""} id="website" placeholder="Website" required autoComplete="off" />
