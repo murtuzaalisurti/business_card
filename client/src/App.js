@@ -220,15 +220,14 @@ function App() {
 
     let url = new URL(window.location.href)
     let search = new URLSearchParams(url.searchParams)
-    for (let i of search.entries()) {
-      console.log(i)
-
+    
+    if(search.toString() === ""){
       fetch('/analytics', {
         method: 'post',
         headers: {
           'Content-Type': 'text/plain'
         },
-        body: i[1]
+        body: 'direct'
       }).then((res) => {
         console.log(res)
         return res.json();
@@ -237,10 +236,26 @@ function App() {
       }).catch((error) => {
         console.log(error)
       })
-
+    } else {
+      for (let i of search.entries()) {
+        console.log(i)
+  
+        fetch('/analytics', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: i[1]
+        }).then((res) => {
+          console.log(res)
+          return res.json();
+        }).then((data) => {
+          console.log(data)
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
     }
-
-    
   }, []);
 
 
