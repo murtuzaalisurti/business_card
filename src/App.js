@@ -260,7 +260,6 @@ function App() {
     }
   }, []);
 
-
   function props_conf(field) {
     return inputs[field] === '' ? undefined : inputs[field];
   }
