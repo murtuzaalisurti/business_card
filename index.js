@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const util = require('util');
 const textParser = bodyParser.text();
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -17,6 +18,12 @@ const app = express();
 
 // app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use(express.json());
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.status(200).send(`<h1>server running</h1>`);
