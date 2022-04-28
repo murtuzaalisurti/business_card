@@ -224,7 +224,7 @@ function App() {
     console.log(!!navigator.userAgent.match(/iphone|android|blackberry/ig))
     
     if(search.toString() === ""){
-      fetch('/analytics', {
+      fetch('https://contact-card-server.vercel.app/analytics', {
         method: 'post',
         headers: {
           'Content-Type': 'text/plain'
@@ -242,7 +242,7 @@ function App() {
       for (let i of search.entries()) {
         console.log(i)
   
-        fetch('/analytics', {
+        fetch('https://contact-card-server.vercel.app/analytics', {
           method: 'post',
           headers: {
             'Content-Type': 'text/plain'
