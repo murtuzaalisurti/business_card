@@ -18,7 +18,8 @@ const app = express();
 
 var corsOptions = {
   origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  methods: ['GET', 'POST', 'PUT']
 }
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>server running</h1>`);
 });
 
-app.post('/analytics', textParser, (req, res) => {
+app.post('/analytics', cors(corsOptions), textParser, (req, res) => {
 
     async function datafetch(){
       const data = await notion.databases.query({ 
