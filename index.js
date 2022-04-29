@@ -17,14 +17,13 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 var corsOptions = {
-  origin: '*',
+  origin: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   methods: ['GET', 'POST', 'PUT']
 }
-app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
   res.status(200).send(`<h1>server running</h1>`);
 });
 
