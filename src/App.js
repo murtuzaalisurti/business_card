@@ -243,7 +243,7 @@ function App() {
       for (let i of search.entries()) {
         console.log(i)
   
-        fetch('https://contact-card-server.vercel.app/analytics', {
+        fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
           method: 'post',
           headers: {
             'Content-Type': 'text/plain'
