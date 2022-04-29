@@ -226,7 +226,6 @@ function App() {
     if(search.toString() === ""){
       fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
         method: 'post',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'text/plain'
         },
