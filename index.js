@@ -27,7 +27,7 @@ var corsOptions = {
 app.use(express.json());
 
 app.options('/analytics', cors(corsOptions))
-router.post('/analytics', cors(corsOptions), textParser, (req, res) => {
+router.post('/', cors(corsOptions), textParser, (req, res) => {
 
     async function datafetch(){
       const data = await notion.databases.query({ 
