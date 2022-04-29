@@ -42,7 +42,7 @@ router.post('/', textParser, (req, res) => {
       db.results.forEach(async(page) => {
         let reference = page.properties.Name.title[0].text.content;
         let visits = page.properties.Visits.number;
-        if(req.body === reference){
+        if(req.body == reference){
           visits += 1;
           await notion.pages.update({
             page_id: page.id,
