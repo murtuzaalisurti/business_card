@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
+    "netlify-lambda": "^2.0.15",
     "serverless-http": "^3.0.1"
   }
 }
