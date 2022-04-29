@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 var corsOptions = {
-  origin: 'https://contact-card.vercel.app',
+  origin: false,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   methods: ['GET', 'POST', 'PUT']
 }
