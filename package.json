@@ -2,10 +2,10 @@
   "name": "with-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "functions/api.js",
   "scripts": {
     "start": "node index.js",
-    "build": "netlify-lambda build .",
+    "build": "netlify-lambda build src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

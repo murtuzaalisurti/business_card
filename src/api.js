@@ -15,8 +15,6 @@ const notion = new Client({ auth: process.env.NOTION_SECRET_KEY })
 const databaseId = process.env.DATABASE_ID;
 
 
-const PORT = process.env.PORT || 5000;
-
 const app = express();
 
 var corsOptions = {
@@ -60,14 +58,10 @@ router.post('/', cors(corsOptions), textParser, (req, res) => {
 })
 
 router.get('/', cors(corsOptions), (req, res) => {
-  res.status(200).sendFile('index.html', {root: __dirname});
+  res.status(200).sendFile('index.html', {root: path.join(__dirname, '..')});
 });
 
-// app.use(`/.netlify/functions/api`, router); 
+app.use(`/.netlify/functions/api`, router);
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
-
-// module.exports = app
-// module.exports.handler = serverless(app)
+module.exports = app
+module.exports.handler = serverless(app)
