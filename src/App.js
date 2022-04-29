@@ -224,7 +224,7 @@ function App() {
     console.log(!!navigator.userAgent.match(/iphone|android|blackberry/ig))
     
     if(search.toString() === ""){
-      fetch('https://contact-card-server.vercel.app/analytics', {
+      fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
         method: 'post',
         mode: 'no-cors',
         headers: {
