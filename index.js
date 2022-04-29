@@ -23,10 +23,6 @@ var corsOptions = {
 }
 app.use(express.json());
 
-app.get('/', cors(corsOptions), (req, res) => {
-  res.status(200).send(`<h1>server running</h1>`);
-});
-
 app.options('/analytics', cors(corsOptions))
 app.post('/analytics', cors(corsOptions), textParser, (req, res) => {
 
@@ -59,6 +55,11 @@ app.post('/analytics', cors(corsOptions), textParser, (req, res) => {
 
     res.send({success: true});
 })
+
+app.get('/', cors(corsOptions), (req, res) => {
+  res.status(200).send(`<h1>server running</h1>`);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
