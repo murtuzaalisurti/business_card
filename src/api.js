@@ -18,14 +18,17 @@ const databaseId = process.env.DATABASE_ID;
 const app = express();
 
 var corsOptions = {
-  origin: false,
+  origin: '',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   methods: ['GET', 'POST', 'PUT']
 }
 app.use(express.json());
 
-app.options('/analytics', cors(corsOptions))
-router.post('/', cors(corsOptions), textParser, (req, res) => {
+// app.options('/', cors(corsOptions))
+router.post('/', textParser, (req, res) => {
+
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     async function datafetch(){
       const data = await notion.databases.query({ 
@@ -57,7 +60,10 @@ router.post('/', cors(corsOptions), textParser, (req, res) => {
     res.status(200).json({success: true});
 })
 
-router.get('/', cors(corsOptions), (req, res) => {
+router.get('/', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  
   res.status(200).json({success: true});
 });
 
