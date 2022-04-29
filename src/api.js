@@ -54,7 +54,7 @@ router.post('/', cors(corsOptions), textParser, (req, res) => {
       })
     })()
 
-    res.send({success: true});
+    res.status(200).json({success: true});
 })
 
 router.get('/', cors(corsOptions), (req, res) => {
