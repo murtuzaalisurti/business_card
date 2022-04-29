@@ -1,9 +1,12 @@
+'use strict';
 const express = require("express");
+const router = express.Router();
 const path = require("path");
 const bodyParser = require("body-parser");
 const util = require('util');
 const textParser = bodyParser.text();
 const cors = require('cors');
+const serverless = require('serverless-http')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,7 +27,7 @@ var corsOptions = {
 app.use(express.json());
 
 app.options('/analytics', cors(corsOptions))
-app.post('/analytics', cors(corsOptions), textParser, (req, res) => {
+router.post('/analytics', cors(corsOptions), textParser, (req, res) => {
 
     async function datafetch(){
       const data = await notion.databases.query({ 
@@ -56,13 +59,15 @@ app.post('/analytics', cors(corsOptions), textParser, (req, res) => {
     res.send({success: true});
 })
 
-app.get('/', cors(corsOptions), (req, res) => {
-  res.status(200).send(`<h1>server running</h1>`);
+router.get('/', cors(corsOptions), (req, res) => {
+  res.status(200).sendFile('index.html', {root: __dirname});
 });
 
+app.use('/.netlify/functions/server', router); 
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
 module.exports = app
+module.exports.handler = serverless(app)

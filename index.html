@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server</title>
+</head>
+<body>
+    <h1>Server Running</h1>
+    <h3>send a post request to /analytics</h3>
+    <button class="request">post</button>
+    
+    <script>
+        document.querySelector(".request").addEventListener("click", () => {
+            fetch('/analytics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({done: true})
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        })
+    </script>
+</body>
+</html>
