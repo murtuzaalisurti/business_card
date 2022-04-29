@@ -58,7 +58,7 @@ router.post('/', cors(corsOptions), textParser, (req, res) => {
 })
 
 router.get('/', cors(corsOptions), (req, res) => {
-  res.status(200).sendFile('index.html', {root: path.join(__dirname, '..')});
+  res.status(200).json({success: true});
 });
 
 app.use(`/.netlify/functions/api`, router);
