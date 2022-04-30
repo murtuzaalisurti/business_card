@@ -52,12 +52,12 @@ router.post('/', textParser, (req, res) => {
               }
             }
           })
+          res.status(200).json({success: true, reference: reference, visits: visits, payload: req.body});
         }
-        console.log(reference, visits);
+        // console.log(reference, visits);
       })
     })()
 
-    res.status(200).json({success: true, body: req.body});
 })
 
 router.get('/', (req, res) => {
