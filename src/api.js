@@ -53,8 +53,6 @@ router.post('/', textParser, (req, res) => {
             }
           })
           res.status(200).json({success: true, reference: reference, visits: visits, payload: req.body});
-        } else {
-          res.status(200).json({message: 'data not inserted'})
         }
       })
     })()
