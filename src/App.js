@@ -220,8 +220,8 @@ function App() {
 
     let url = new URL(window.location.href)
     let search = new URLSearchParams(url.searchParams)
-    console.log(navigator.userAgent)
-    console.log(!!navigator.userAgent.match(/iphone|android|blackberry/ig))
+    // console.log(navigator.userAgent)
+    // console.log(!!navigator.userAgent.match(/iphone|android|blackberry/ig))
     
     if(search.toString() === ""){
       fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
@@ -240,7 +240,6 @@ function App() {
       })
     } else {
       for (let i of search.entries()) {
-        console.log(i)
   
         fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
           method: 'post',
