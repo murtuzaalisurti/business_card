@@ -62,7 +62,7 @@ router.post('/', textParser, (req, res) => {
 router.get('/', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.status(200).sendFile('index.html', {root: './src'});
+  res.status(200).json({message: 'function ran'});
 });
 
 app.use(`/.netlify/functions/api`, router);
