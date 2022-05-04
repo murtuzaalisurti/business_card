@@ -50,8 +50,9 @@ app.post('/analytics', textParser, (req, res) => {
     res.send({success: true});
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+app.get('/', (req, res) => {
+    // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+    res.redirect(301, 'https://contact-card.vercel.app');
 });
 
 
