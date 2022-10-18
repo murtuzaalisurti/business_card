@@ -46,10 +46,10 @@ const Card = (props) => {
 Card.defaultProps = {
     name: "Murtuzaali Surti",
     email: "hey.murtuza@gmail.com",
-    occupation: "Front-end Web Developer",
-    website: "murtuzaali-surti.me",
+    occupation: "Full Stack Web Developer",
+    website: "murtuzaalisurti.github.io",
     linkedin: "https://www.linkedin.com/in/murtuzaali-surti/",
-    about: "Hey, myself Murtuza and I am a Front-end Web Developer & a Blogger. I am specialized in JavaScript as well as Responsive Web Design. Content Creation suits me well.",
+    about: "Hey, myself Murtuza and I am a Full Stack Web Developer & a Content Creator. I am specialized in javascript, MERN stack as well as responsive web design. Content creation suits me well.",
     services: "I offer front-end web development, technical writing, blogging or full stack web development as a service.",
     github: "https://github.com/murtuzaalisurti",
     twitter: "https://twitter.com/murtuza_surti",
