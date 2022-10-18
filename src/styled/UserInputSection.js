@@ -18,7 +18,7 @@ export const UserInputWrap = styled.div`
     }
 
     @media screen and (max-width: 45em){
-        width: 80%;
+        width: 85%;
         align-items: center;
         padding: 0;
     }
@@ -144,7 +144,7 @@ export const ThemesWrap = styled.div`
     font-size: 0.85rem;
     font-family: 'Poppins', sans-serif;
     background-color: #1A1B21;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1rem 1rem 1rem;
     border-radius: 0.4rem;
 
     @media screen and (max-width: 45em){
