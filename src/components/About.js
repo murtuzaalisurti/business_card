@@ -5,12 +5,12 @@ const About = (props) => {
     return (
         <AboutWrapper colors={props.colors}>
             <div className="about">
-                <div className="title">About</div>
-                <div className="desc">{props.about}</div>
+                <p className="title">About</p>
+                <p className="desc">{props.about}</p>
             </div>
             <div className="interests">
-                <div className="title">Services</div>
-                <div className="desc">{props.services}</div>
+                <p className="title">Services</p>
+                <p className="desc">{props.services}</p>
             </div>
         </AboutWrapper>
     )
