@@ -6,7 +6,7 @@ import About from './About'
 import Email from './Email'
 import location from '../assets/profile_final_2.png'
 import { Button } from '../styled/UserInputSection'
-import Tilt from 'react-tilt'
+import { Tilt } from 'react-tilt'
 
 const Card = (props) => {
     var src = {
@@ -46,10 +46,10 @@ const Card = (props) => {
 Card.defaultProps = {
     name: "Murtuzaali Surti",
     email: "hey.murtuza@gmail.com",
-    occupation: "Full Stack Web Developer",
+    occupation: "Software Engineer",
     website: "murtuzaalisurti.github.io",
     linkedin: "https://www.linkedin.com/in/murtuzaali-surti/",
-    about: "Hey, myself Murtuza and I am a Full Stack Web Developer & a Content Creator. I am specialized in javascript, MERN stack as well as responsive web design. Content creation suits me well.",
+    about: "Hey, myself Murtuza and I work as a Software Engineer & a Content Creator. I am specialized in javascript as well as responsive web design. Content creation suits me well.",
     services: "I offer front-end web development, technical writing, blogging or full stack web development as a service.",
     github: "https://github.com/murtuzaalisurti",
     twitter: "https://twitter.com/murtuza_surti",
