@@ -4,7 +4,7 @@ import { HeadingStyled } from '../styled/Headings'
 import Introduction from './Introduction'
 import About from './About'
 import Email from './Email'
-import location from '../assets/profile_final_2.png'
+import location from '../assets/profile.png'
 import { Button } from '../styled/UserInputSection'
 import { Tilt } from 'react-tilt'
 

@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import { useEffect, useState } from 'react'
 import * as htmlToImage from 'html-to-image'
 import download from 'downloadjs'
-import img_location from './assets/profile_final_2.png'
+import img_location from './assets/profile.png'
 
 function App() {
 
