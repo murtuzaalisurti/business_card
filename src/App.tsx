@@ -1,14 +1,16 @@
-import Card from "./components/Card";
-import { UserInputWrap, Input, Textarea, Label, Button, ThemesWrap, SelectTheme } from './styled/UserInputSection.js'
-import { HeadingStyled } from './styled/Headings.js'
-import Footer from './components/Footer.js'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import * as htmlToImage from 'html-to-image'
 import download from 'downloadjs'
+
+import { UserInputWrap, Input, Textarea, Label, Button, ThemesWrap, SelectTheme } from './styled/UserInputSection.js'
+import { HeadingStyled } from './styled/Headings.js'
+import Card from "./components/Card";
+import Footer from './components/Footer.js'
+
 import img_location from './assets/profile.png'
+import { doFetch } from "./services/fetchService.js";
 
 function App() {
-
   const [image, setImage] = useState(img_location);
   const [isImageModified, setIsImageModified] = useState<{
     status: boolean,
@@ -231,46 +233,38 @@ function App() {
     setBreakpoint(Math.round((window.document.body.clientWidth) / 16));
   })
 
-  useEffect(() => {
+  const sendAnalytics = useCallback(async (body: string, options: { signal: AbortSignal }) => {
+    await doFetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      signal: options.signal,
+      body,
+    })
+  }, [])
 
+  useEffect(() => {
+    const controller = new AbortController();
     const url = new URL(window.location.href)
     const search = new URLSearchParams(url.searchParams)
     
     if(search.toString() === ""){
-      fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'text/plain'
-        },
-        body: 'direct'
-      }).then((res) => {
-        console.log(res)
-        return res.json();
-      }).then((data) => {
-        console.log(data)
-      }).catch((error) => {
-        console.log(error)
+      sendAnalytics('direct', {
+        signal: controller.signal
       })
     } else {
       for (const i of search.entries()) {
-  
-        fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'text/plain'
-          },
-          body: i[1]
-        }).then((res) => {
-          console.log(res)
-          return res.json();
-        }).then((data) => {
-          console.log(data)
-        }).catch((error) => {
-          console.log(error)
+        sendAnalytics(i[1], {
+          signal: controller.signal
         })
       }
     }
-  }, []);
+
+    return () => {
+      controller.abort();
+    }
+  }, [sendAnalytics]);
 
   function props_conf(field: string) {
     return inputs[field] === '' ? undefined : inputs[field];
