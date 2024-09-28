@@ -51,7 +51,7 @@ function App() {
       if (isImageModified.fileType === "image") {
         if (document.querySelector("#image") !== null) {
           if ((document.querySelector("#image") as HTMLInputElement).files?.length === 1) {
-            isImageModified.target.files && setImage(URL.createObjectURL(new Blob([isImageModified.target.files[0]], { type: "image" })));
+            if (isImageModified.target.files) setImage(URL.createObjectURL(new Blob([isImageModified.target.files[0]], { type: "image" })));
             uploadLabel.innerHTML = "Uploaded Successfully!";
             uploadLabel.classList.remove("focus");
             setTimeout(() => {
@@ -79,14 +79,14 @@ function App() {
 
   function input_check() {
 
-    let filled = {
+    const filled = {
       inputs: false,
       textarea: false,
       image: false
     }
 
-    let all_input_fields = document.querySelectorAll("input");
-    let textareas = document.querySelectorAll("textarea");
+    const all_input_fields = document.querySelectorAll("input");
+    const textareas = document.querySelectorAll("textarea");
 
     for (let index = 0; index < all_input_fields.length; index++) {
 
@@ -114,7 +114,11 @@ function App() {
       }
     }
 
-    (filled.image && filled.textarea && filled.inputs) ? setDownloadable(true) : setDownloadable(false);
+    if (filled.image && filled.textarea && filled.inputs) {
+      setDownloadable(true)
+    } else {
+      setDownloadable(false);
+    }
   }
 
   function colorChange(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -122,8 +126,8 @@ function App() {
 
     function borderChange(element: HTMLElement) {
       element.style.borderColor = "#000000"; //#ffb681
-      let all_color_selectors = element.parentElement && element.parentElement.childNodes;
-      all_color_selectors && all_color_selectors.forEach((item) => {
+      const all_color_selectors = element.parentElement && element.parentElement.childNodes;
+      if (all_color_selectors) all_color_selectors.forEach((item) => {
         if (item.nodeName !== "p") {
           if (item !== element) {
             (item as HTMLElement).style.borderColor = "transparent";
@@ -229,8 +233,8 @@ function App() {
 
   useEffect(() => {
 
-    let url = new URL(window.location.href)
-    let search = new URLSearchParams(url.searchParams)
+    const url = new URL(window.location.href)
+    const search = new URLSearchParams(url.searchParams)
     
     if(search.toString() === ""){
       fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
@@ -248,7 +252,7 @@ function App() {
         console.log(error)
       })
     } else {
-      for (let i of search.entries()) {
+      for (const i of search.entries()) {
   
         fetch('https://contact-card-server.netlify.app/.netlify/functions/api', {
           method: 'post',

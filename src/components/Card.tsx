@@ -37,7 +37,7 @@ interface Props {
 }
 
 const Card = (props: Props) => {
-    var src = {
+    const src = {
         img_src: props.image_src
     };
     if (document.querySelector("#image") == null || (document.querySelector("#image") as HTMLInputElement).files?.length === 0) {
