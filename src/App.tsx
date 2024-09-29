@@ -2,16 +2,28 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import * as htmlToImage from 'html-to-image'
 import download from 'downloadjs'
 
-import { UserInputWrap, Input, Textarea, Label, Button, ThemesWrap, SelectTheme } from './styled/UserInputSection.js'
+import { UserInputWrap } from './styled/UserInputSection.js'
 import { HeadingStyled } from './styled/Headings.js'
 import Card from "./components/Card";
 import Footer from './components/Footer.js'
 
 import img_location from './assets/profile.png'
 import { doFetch } from "./services/fetchService.js";
+import InputDetails from './components/InputDetails.js'
 
 function App() {
   const [image, setImage] = useState(img_location);
+  const [downloadState, setDownloadState] = useState(false);
+  const [downloadable, setDownloadable] = useState(false);
+  const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth / 16));
+  const [inputs, setInputs] = useState<Record<string, string | undefined>>({
+    name: undefined,
+    occupation: undefined,
+    website: undefined,
+    email: undefined,
+    about: undefined,
+    services: undefined
+  });
   const [isImageModified, setIsImageModified] = useState<{
     status: boolean,
     fileType: string,
@@ -25,17 +37,6 @@ function App() {
       files: null
     }
   });
-  const [downloadState, setDownloadState] = useState(false);
-  const [downloadable, setDownloadable] = useState(false);
-  const [inputs, setInputs] = useState<Record<string, string | undefined>>({
-    name: undefined,
-    occupation: undefined,
-    website: undefined,
-    email: undefined,
-    about: undefined,
-    services: undefined
-  });
-  const [breakpoint, setBreakpoint] = useState(Math.round(window.document.body.clientWidth / 16));
   const [colors, setColors] = useState({
     cardBackgroundColor: "#1A1B21",
     nameColor: "#FFFFFF",
@@ -46,9 +47,18 @@ function App() {
     emailColor: "#918E9B",
     emailBackgroundColor: "#161619"
   });
+  const [themes] = useState([
+    "black",
+    "white",
+    "#EEB4B3",
+    "#F4E8C1",
+    "#3D5A80",
+    "#582C4D"
+  ]);
 
   useEffect(() => {
     const uploadLabel = document.querySelector("#upload_label") as HTMLLabelElement;
+
     if (isImageModified.status) {
       if (isImageModified.fileType === "image") {
         if (document.querySelector("#image") !== null) {
@@ -80,7 +90,6 @@ function App() {
   }
 
   function input_check() {
-
     const filled = {
       inputs: false,
       textarea: false,
@@ -91,7 +100,6 @@ function App() {
     const textareas = document.querySelectorAll("textarea");
 
     for (let index = 0; index < all_input_fields.length; index++) {
-
       if (index === 0) {
         if (all_input_fields[index].files?.length !== 0) {
           filled.image = true;
@@ -104,7 +112,6 @@ function App() {
           filled.inputs = true;
         }
       }
-
     }
 
     for (let index = 0; index < textareas.length; index++) {
@@ -137,6 +144,7 @@ function App() {
         }
       })
     }
+
     if (target.style.backgroundColor === "rgb(88, 44, 77)") {
       borderChange(target);
       setColors({
@@ -215,17 +223,16 @@ function App() {
 
   function download_image() {
     setDownloadState(true);
+
     htmlToImage.toPng(document.querySelector("#card") as HTMLElement, {
       quality: 1.0
     }).then((dataUrl) => {
       download(dataUrl, 'business_card_image')
-
       setDownloadState(true);
 
       setTimeout(() => {
         setDownloadState(false);
       }, 1000)
-
     })
   }
 
@@ -248,8 +255,8 @@ function App() {
     const controller = new AbortController();
     const url = new URL(window.location.href)
     const search = new URLSearchParams(url.searchParams)
-    
-    if(search.toString() === ""){
+
+    if (search.toString() === "") {
       sendAnalytics('direct', {
         signal: controller.signal
       })
@@ -270,29 +277,31 @@ function App() {
     return inputs[field] === '' ? undefined : inputs[field];
   }
 
+  function handleInputImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setIsImageModified({ status: true, fileType: e.target.files ? e.target.files[0].type.split("/")[0] : "", target: e.target });
+    input_check();
+  }
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    inputChange(e);
+    input_check();
+  }
+
   return (
     <>
       <main id="main">
         <UserInputWrap>
           <HeadingStyled className="main-heading">Contact Card Generator</HeadingStyled>
-          <Label htmlFor="image" id="upload_label">Upload Profile Pic<i className="fas fa-user-circle"></i></Label>
-          <Input type="file" accept="image/*" onChange={(e) => { setIsImageModified({ status: true, fileType: e.target.files ? e.target.files[0].type.split("/")[0] : "", target: e.target }); input_check(); }} id="image" placeholder="Upload an image" required />
-          <Input type="text" name="name" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.name || ""} id="name" placeholder="Your name?" required autoComplete="off" />
-          <Input type="text" name="occupation" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.occupation || ""} id="occupation" placeholder="Profession" required autoComplete="off" />
-          <Input type="text" name="website" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.website || ""} id="website" placeholder="Website" required autoComplete="off" />
-          <Input type="email" name="email" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.email || ""} id="email" placeholder="Email" required autoComplete="off" />
-          <Textarea name="about" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.about || ""} id="about" placeholder="A little bit about you.." rows={5} required autoComplete="off" />
-          <Textarea name="services" onChange={(e) => { inputChange(e); input_check(); }} value={inputs.services || ""} id="interests" placeholder="Services offered..." rows={5} required autoComplete="off" />
-          <ThemesWrap>
-            <p>Theme </p>
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: 'black' }} />
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: 'white' }} />
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: '#582C4D' }} />
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: '#3D5A80' }} />
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: '#F4E8C1' }} />
-            <SelectTheme onClick={(e) => { colorChange(e) }} style={{ backgroundColor: '#EEB4B3' }} />
-          </ThemesWrap>
-          <Button className="for-desktop download_btn" disabled={downloadable ? false : true} title={downloadable ? "" : "Please fill out all fields"} onClick={() => { download_image() }}>Download<i className={downloadState ? "fas fa-circle-notch load" : "fas fa-download"}></i></Button>
+          <InputDetails
+            handleInputImageChange={handleInputImageChange}
+            handleInputChange={handleInputChange}
+            inputs={inputs}
+            themes={themes}
+            colorChange={colorChange}
+            downloadState={downloadState}
+            downloadable={downloadable}
+            download_image={download_image}
+          />
         </UserInputWrap>
         <Card
           name={props_conf('name')}
